@@ -1,0 +1,13 @@
+syntax: glob
+*.xml
+*.txt
+*.exe
+*.cache
+*.lref
+*.baml
+*.pdb
+*.dll
+*.sqlite
+*.config
+*.Bat
+*.bat

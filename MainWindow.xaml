@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+     x:Class="BloodAlcoholCalculator.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     Title="BloodAlcoholCalculator"
+     Height="684"
+     Width="817" 
+     xmlns:l="clr-namespace:BloodAlcoholCalculator" 
+     xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+     xmlns:dockctrl="clr-namespace:Xceed.Wpf.AvalonDock.Controls;assembly=Xceed.Wpf.AvalonDock"
+     xmlns:vw="clr-namespace:BloodAlcoholCalculator.View"
+     xmlns:vm="clr-namespace:BloodAlcoholCalculator.ViewModel"
+     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+     Opacity="1" AllowsTransparency="False">
+     <Window.CommandBindings>
+          
+     </Window.CommandBindings>
+     <Window.InputBindings>
+          <KeyBinding Key="OemTilde" Command="{Binding OpenConsoleCommand}"/>
+     </Window.InputBindings>
+     <Window.Resources>
+          <ResourceDictionary
+			Source="MainWindowResources.xaml" />
+     </Window.Resources>
+     <xctk:BusyIndicator IsBusy="{Binding IsBusy}">
+          <DockPanel>
+               <DockPanel
+			DockPanel.Dock="Top"
+			KeyboardNavigation.TabNavigation="None">
+                    <Menu KeyboardNavigation.TabNavigation="Cycle">
+                         <MenuItem Header="_File">
+                              <MenuItem Header="_Edit Users" Command="{Binding OpenViewModelCommand}" CommandParameter="EditUsers" />
+                              <MenuItem Header="E_xit" Command="{Binding Path=CloseCommand}" />
+                         </MenuItem>
+                    </Menu>
+               </DockPanel>
+               <StatusBar DockPanel.Dock="Bottom">
+                    <StatusBarItem DockPanel.Dock="Right">
+                         <TextBox FontFamily="Consolas" Margin="1, 0" Name="TextBoxTime" IsEnabled="False" VerticalAlignment="Center" 
+                             FontSize="14" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                    </StatusBarItem>
+               </StatusBar>
+               <Grid
+			Margin="0">
+                    <Grid.ColumnDefinitions>
+                         <ColumnDefinition
+					Width="0" />
+                         <ColumnDefinition
+					Width="0" />
+                         <ColumnDefinition
+					Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <avalonDock:DockingManager Grid.Column="2"
+                                          DocumentsSource="{Binding Workspaces}"
+                                          AnchorablesSource="{Binding Anchorables}"
+                                          ActiveContent="{Binding ActiveWorkspace, Mode=TwoWay}"
+                                          x:Name="dockingManager"
+                                          Margin="2"       
+                                       >
+                         <avalonDock:DockingManager.Theme>
+                              <avalonDock:GenericTheme/>
+                              <!--<avalonDock:ExpressionLightTheme/>-->
+                         </avalonDock:DockingManager.Theme>
+                         <avalonDock:DockingManager.LayoutItemContainerStyle>
+                              <Style TargetType="{x:Type dockctrl:LayoutItem}">
+                                   <Setter Property="Title" Value="{Binding Model.DisplayName}"/>
+                                   <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}"/>
+                                   <!--<Setter Property="Visibility" Value="{Binding Model.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVis}}"/>-->
+                              </Style>
+                         </avalonDock:DockingManager.LayoutItemContainerStyle>
+                         <avalonDock:LayoutRoot>
+                              <avalonDock:LayoutPanel  Orientation="Horizontal" >
+                                   <avalonDock:LayoutAnchorablePaneGroup Orientation="Horizontal" DockWidth="275">
+                                        <avalonDock:LayoutAnchorablePane  >
+                                             <avalonDock:LayoutAnchorable x:Name="definedDrinksAnchorable" CanHide="False" ContentId="definedDrinks">
+                                                  <vm:DefinedDrinkListViewModel/>
+                                             </avalonDock:LayoutAnchorable>
+                                        </avalonDock:LayoutAnchorablePane>
+                                   </avalonDock:LayoutAnchorablePaneGroup>
+                                   <avalonDock:LayoutPanel Orientation="Vertical">
+                                        <avalonDock:LayoutPanel Orientation="Horizontal">
+                                             <avalonDock:LayoutDocumentPaneGroup Orientation="Horizontal">
+                                                  <avalonDock:LayoutDocumentPane>
+                                                       <avalonDock:LayoutDocument x:Name="accessEntries" ContentId="accessentries" CanClose="False">
+                                                            <vm:MainDrinkViewModel/>
+                                                       </avalonDock:LayoutDocument>
+                                                  </avalonDock:LayoutDocumentPane>
+                                             </avalonDock:LayoutDocumentPaneGroup>
+                                        </avalonDock:LayoutPanel>
+                                        <!--<avalonDock:LayoutAnchorablePaneGroup Orientation="Horizontal" DockWidth="186" DockHeight="294.3" FloatingWidth="186" FloatingHeight="595" FloatingLeft="710" FloatingTop="725">
+                                             <avalonDock:LayoutAnchorablePane DockHeight="294.3" FloatingWidth="186" FloatingHeight="595" FloatingLeft="710" FloatingTop="725">
+                                                  <avalonDock:LayoutAnchorable x:Name="vehicleAnchorable"  CanHide="False" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="Vehicle Entries" IsSelected="True" FloatingLeft="710" FloatingTop="725" FloatingWidth="186" FloatingHeight="595" LastActivationTimeStamp="01/23/2016 22:50:10" ContentId="vehicleentries">
+                                                  </avalonDock:LayoutAnchorable>
+                                             </avalonDock:LayoutAnchorablePane>
+                                        </avalonDock:LayoutAnchorablePaneGroup>-->
+                                   </avalonDock:LayoutPanel>
+                              </avalonDock:LayoutPanel>
+                         </avalonDock:LayoutRoot>
+                    </avalonDock:DockingManager>
+               </Grid>
+          </DockPanel>
+     </xctk:BusyIndicator>
+</Window>

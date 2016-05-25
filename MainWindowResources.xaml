@@ -1,0 +1,33 @@
+﻿<!--
+This resource dictionary is used by the MainWindow. 
+-->
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:BloodAlcoholCalculator.ViewModel"
+	xmlns:vw="clr-namespace:BloodAlcoholCalculator.View"
+	xmlns:u="clr-namespace:BloodAlcoholCalculator.Utility"
+>
+     <!-- !
+	This template applies a ReportView to an instance of the ReportViewModel class shown in the main window.
+   	-->
+     <DataTemplate DataType="{x:Type vm:ConsoleViewModel}">
+          <vw:ConsoleView />
+     </DataTemplate>
+     <DataTemplate DataType="{x:Type vm:ConsumedDrinkListViewModel}">
+          <vw:ConsumedDrinkListView />
+     </DataTemplate>
+     <DataTemplate DataType="{x:Type vm:DefinedDrinkListViewModel}">
+          <vw:DefinedDrinkListView />
+     </DataTemplate>
+     <DataTemplate DataType="{x:Type vm:MainDrinkViewModel}">
+          <vw:MainDrinkView />
+     </DataTemplate>
+     <DataTemplate DataType="{x:Type vm:UserViewModel}">
+          <vw:UserView />
+     </DataTemplate>
+     <DataTemplate DataType="{x:Type vm:EditUsersViewModel}">
+          <vw:EditUsersView />
+     </DataTemplate>
+</ResourceDictionary>
+     
