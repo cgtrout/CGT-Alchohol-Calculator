@@ -101,11 +101,12 @@ namespace BloodAlcoholCalculator.Repository
                OnChanged(new EventArgs() { });
           }
 
-          public void ClearDb()
+          public void ClearTable()
           {
                using (MainDatabase db = new MainDatabase(dbPath)) {
                     foreach(var v in Dict.Values) {
-                         db.Remove(v);
+                         db.Attach(v.GetBaseType());
+                         db.Remove(v.GetBaseType());
                     }
                     db.SubmitChanges();
                };

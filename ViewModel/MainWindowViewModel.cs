@@ -1,4 +1,5 @@
 ﻿using BloodAlcoholCalculator.Console;
+using BloodAlcoholCalculator.Repository;
 using BloodAlcoholCalculator.Utility;
 using System;
 using System.Collections.ObjectModel;
@@ -162,6 +163,28 @@ namespace BloodAlcoholCalculator.ViewModel
                PrintStatusText("All tabs closed");
           }
 
+          //ClearAllDrinksCommand
+          public ICommand ClearAllDrinksCommand
+          {
+               get
+               {
+                    if (_clearAllDrinksCommand == null) {
+                         _clearAllDrinksCommand = new RelayCommand(ClearAllDrinks);
+                    }
+                    return _clearAllDrinksCommand;
+               }
+          }
+
+          private void ClearAllDrinks(object obj)
+          {
+               var res = MessageBox.Show("Are you sure you want to remove drinks from all users?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+               if(res == MessageBoxResult.Yes) {
+                    var repos = DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink>.Instance;
+                    repos.ClearTable();
+               }
+          }
+
           /// <summary>
           /// Returns the collection of available workspaces to display.
           /// A 'workspace' is a ViewModel that can request to be closed.
@@ -271,6 +294,7 @@ namespace BloodAlcoholCalculator.ViewModel
           }
 
           private WorkspaceViewModel _activeWorkspace;
+          private ICommand _clearAllDrinksCommand;
 
           private bool SetActiveWorkspace(WorkspaceViewModel workspace)
           {

@@ -33,6 +33,9 @@
                               <MenuItem Header="Open _Drink Window" Command="{Binding OpenViewModelCommand}" CommandParameter="MainDrink" />
                               <MenuItem Header="E_xit" Command="{Binding Path=CloseCommand}" />
                          </MenuItem>
+                         <MenuItem Header="_Drinks">
+                              <MenuItem Header="Clear _All Drinks" Command="{Binding ClearAllDrinksCommand}"/>
+                         </MenuItem>
                     </Menu>
                </DockPanel>
                <StatusBar DockPanel.Dock="Bottom">
