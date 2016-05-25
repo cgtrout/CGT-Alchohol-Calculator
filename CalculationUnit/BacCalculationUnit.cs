@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BloodAlcoholCalculator.CalculationUnit
 {
-     public static class CalculationUnit
+     public static class BacCalculationUnit
      {
           public static double CalculateBac(List<ConsumedDrink> drinkList, User user, TimeSpan deltaTime)
           {

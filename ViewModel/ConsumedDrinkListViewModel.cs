@@ -65,6 +65,7 @@ namespace BloodAlcoholCalculator.ViewModel
           private bool Filter(object item)
           {
                var consumedDrink = item as ConsumedDrinkViewModel;
+               if (User == null) return false;
 
                if (consumedDrink.Drink.LinkedUserId == User.GetBaseId()) {
                     return true;
