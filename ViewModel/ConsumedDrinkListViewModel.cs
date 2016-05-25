@@ -18,7 +18,23 @@ namespace BloodAlcoholCalculator.ViewModel
 
           public DataRepository<ConsumedDrinkViewModel ,Model.ConsumedDrink> Repository { get; set; }
           public DataRepository<DefinedDrinkViewModel, Model.DefinedDrink> DefinedDrinkRepository { get; set; }
+          
+          public ConsumedDrinkListViewModel()
+          {
+               Repository = DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink>.Instance;
+               DefinedDrinkRepository = DataRepository<DefinedDrinkViewModel, Model.DefinedDrink>.Instance;
+               
+               base.DisplayName = "Drink History";
 
+               LinkDrinks();
+
+               View = new CollectionViewSource { Source = Repository.Collection }.View;
+
+               //load nothing before person selected
+               View.Filter = item => {
+                    return false;
+               };
+          }
 
           public ICollectionView View
           {
@@ -38,7 +54,7 @@ namespace BloodAlcoholCalculator.ViewModel
                     _user = value;
                     OnPropertyChanged("User");
 
-                    View = CollectionViewSource.GetDefaultView(Repository.Collection);
+                    View = new CollectionViewSource { Source = Repository.Collection }.View;
                     View.Filter = item => {
                          return Filter(item);
                     };
@@ -56,22 +72,7 @@ namespace BloodAlcoholCalculator.ViewModel
                }
           }
 
-          public ConsumedDrinkListViewModel()
-          {
-               Repository = DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink>.Instance;
-               DefinedDrinkRepository = DataRepository<DefinedDrinkViewModel, Model.DefinedDrink>.Instance;
-               base.DisplayName = "Drink History";
-
-               LinkDrinks();
-
-               View = CollectionViewSource.GetDefaultView(Repository.Collection);
-
-               //load nothing before person selected
-               View.Filter = item => {
-                    return false;
-               };
-          }
-
+          
           public IEnumerable<ConsumedDrinkViewModel> GetFilteredQuery()
           {
                return Repository.Collection.Where(Filter);

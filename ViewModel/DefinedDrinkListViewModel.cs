@@ -15,11 +15,13 @@ namespace BloodAlcoholCalculator.ViewModel
 
           public DataRepository<DefinedDrinkViewModel, Model.DefinedDrink> Repository { get; set; }
           public DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink> ConsumedDrinkRepository { get; set; }
+          public DataRepository<UserViewModel, Model.User> UserRepository { get; set; }
 
           public DefinedDrinkListViewModel()
           {
                Repository = DataRepository<DefinedDrinkViewModel, Model.DefinedDrink>.Instance;
                ConsumedDrinkRepository = DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink>.Instance;
+               UserRepository = DataRepository<UserViewModel, Model.User>.Instance;
 
                base.DisplayName = "Drink List";
           }
@@ -98,12 +100,19 @@ namespace BloodAlcoholCalculator.ViewModel
 
           private void ConsumeDrink()
           {
-               ConsumedDrinkViewModel consumedDrink = new ConsumedDrinkViewModel() {
-                    Time = DateTime.Now,
-                    LinkedDrink = SelectedValue.Drink
-               };
-               consumedDrink.Drink.LinkedDrinkId = SelectedValue.Id;
-               ConsumedDrinkRepository.Add(consumedDrink);
+               
+
+               //add drink for each user
+               foreach(var user in UserRepository.Dict.Values) {
+                    ConsumedDrinkViewModel consumedDrink = new ConsumedDrinkViewModel()
+                    {
+                         Time = DateTime.Now,
+                         LinkedDrink = SelectedValue.Drink
+                    };
+                    consumedDrink.Drink.LinkedUserId = user.Id;
+                    consumedDrink.Drink.LinkedDrinkId = SelectedValue.Id;
+                    ConsumedDrinkRepository.Add(consumedDrink);
+               }
           }
 
           public DefinedDrinkViewModel SelectedValue
