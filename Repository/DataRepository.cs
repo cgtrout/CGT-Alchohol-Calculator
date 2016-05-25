@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 
 namespace BloodAlcoholCalculator.Repository
 {
+
+     public delegate void RepositoryChangedEventHandler(object sender, EventArgs e);
+
      /// <summary>
      /// DataRepository wrapped around one specific db table
      /// </summary>
@@ -54,6 +57,15 @@ namespace BloodAlcoholCalculator.Repository
                };
           }
 
+          public event RepositoryChangedEventHandler Changed;
+
+          protected virtual void OnChanged(EventArgs e)
+          {
+               if(Changed != null) {
+                    Changed(this, e);
+               }
+          }
+
           public void Add(VmType t)
           {
                using (MainDatabase db = new MainDatabase(dbPath)) {
@@ -62,6 +74,7 @@ namespace BloodAlcoholCalculator.Repository
 
                Collection.Add(t);
                Dict.Add(t.GetBaseId(), t);
+               OnChanged(new EventArgs() { });
           }
 
           public void Edit(VmType t)
@@ -73,6 +86,7 @@ namespace BloodAlcoholCalculator.Repository
 
                Dict.Remove(t.GetBaseId());
                Dict.Add(t.GetBaseId(), t);
+               OnChanged(new EventArgs() { });
           }
 
           public void Remove(VmType t)
@@ -84,11 +98,20 @@ namespace BloodAlcoholCalculator.Repository
                };
                Collection.Remove(t);
                Dict.Remove(t.GetBaseId());
+               OnChanged(new EventArgs() { });
           }
 
           public void ClearDb()
           {
-               throw new NotImplementedException();
+               using (MainDatabase db = new MainDatabase(dbPath)) {
+                    foreach(var v in Dict.Values) {
+                         db.Remove(v);
+                    }
+                    db.SubmitChanges();
+               };
+               Collection.Clear();
+               Dict.Clear();
+               OnChanged(new EventArgs() { });
           }
      }
 }

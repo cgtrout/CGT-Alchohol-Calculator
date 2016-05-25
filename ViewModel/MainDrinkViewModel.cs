@@ -42,21 +42,37 @@ namespace BloodAlcoholCalculator.ViewModel
                stopWatch = new Stopwatch();
                stopWatch.Start();
                chartRefreshCountDown = chartRefreshCountDownStart;
+
+               ConsumedDrinkRepository.Changed += ConsumedDrinkRepository_Changed;
+
+               RefreshBac();
+               RefreshPlotPoints();
+          }
+
+          private void ConsumedDrinkRepository_Changed(object sender, EventArgs e)
+          {
+               RefreshBac();
+               RefreshPlotPoints();
           }
 
           private void Timer_Tick(object sender, EventArgs e)
           {
-               OnPropertyChanged("BloodAlcohol");
-               OnPropertyChanged("BloodAlcoholString");
+               RefreshBac();
 
                chartRefreshCountDown -= stopWatch.Elapsed;
                stopWatch.Restart();
-                    
-               if(chartRefreshCountDown.Ticks <= 0) {
+
+               if (chartRefreshCountDown.Ticks <= 0) {
                     OnPropertyChanged("PlotPoints");
                     chartRefreshCountDown = chartRefreshCountDownStart;
                }
-               
+
+          }
+
+          private void RefreshBac()
+          {
+               OnPropertyChanged("BloodAlcohol");
+               OnPropertyChanged("BloodAlcoholString");
           }
 
           public UserViewModel User
@@ -71,6 +87,9 @@ namespace BloodAlcoholCalculator.ViewModel
                     timer.Start();
                     ConsumedDrinkListVM.LinkDrinks();
                     ConsumedDrinkListVM.User = value;
+
+                    RefreshBac();
+                    RefreshPlotPoints();
                }
           }
 
@@ -200,11 +219,16 @@ namespace BloodAlcoholCalculator.ViewModel
                {
                     if (_refreshChartCommand == null) {
                          _refreshChartCommand = new RelayCommand(x => {
-                              OnPropertyChanged("PlotPoints");
+                              RefreshPlotPoints();
                          });
                     }
                     return _refreshChartCommand;
                }
+          }
+
+          private void RefreshPlotPoints()
+          {
+               OnPropertyChanged("PlotPoints");
           }
      }
 
