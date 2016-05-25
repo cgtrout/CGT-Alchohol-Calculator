@@ -30,6 +30,7 @@
                     <Menu KeyboardNavigation.TabNavigation="Cycle">
                          <MenuItem Header="_File">
                               <MenuItem Header="_Edit Users" Command="{Binding OpenViewModelCommand}" CommandParameter="EditUsers" />
+                              <MenuItem Header="Open _Drink Window" Command="{Binding OpenViewModelCommand}" CommandParameter="MainDrink" />
                               <MenuItem Header="E_xit" Command="{Binding Path=CloseCommand}" />
                          </MenuItem>
                     </Menu>
@@ -83,7 +84,7 @@
                                              <avalonDock:LayoutDocumentPaneGroup Orientation="Horizontal">
                                                   <avalonDock:LayoutDocumentPane>
                                                        <avalonDock:LayoutDocument x:Name="accessEntries" ContentId="accessentries" CanClose="False">
-                                                            <vm:MainDrinkViewModel/>
+                                                            <!--<vm:MainDrinkViewModel/>-->
                                                        </avalonDock:LayoutDocument>
                                                   </avalonDock:LayoutDocumentPane>
                                              </avalonDock:LayoutDocumentPaneGroup>
