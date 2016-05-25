@@ -67,10 +67,13 @@ namespace BloodAlcoholCalculator.ViewModel
                get {
                     if (User == null) return 0;
 
-                    var deltaTime = new TimeSpan();
+                    var deltaTime = DateTime.Now - User.StartTime;
+                    OnPropertyChanged("BloodAlcoholString");
                     return CalculationUnit.CalculationUnit.CalculateBac(ConsumedDrinkListVM.GetFilteredList(), User.BaseUser, deltaTime);
                }
           }
+
+          public string BloodAlcoholString => BloodAlcohol.ToString("0.##");
 
           //SelectNowCommand
           public ICommand SelectNowCommand
