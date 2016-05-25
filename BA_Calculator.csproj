@@ -111,10 +111,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DataProviders">
-      <HintPath>..\..\FYI Report Project\Decompiled FYI View\bin\Release\DataProviders.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\DataProviders.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Web Tools\DNX\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -127,13 +127,13 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="RdlCri">
-      <HintPath>..\..\FYI Report Project\Decompiled FYI View\bin\Release\RdlCri.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\RdlCri.dll</HintPath>
     </Reference>
     <Reference Include="RdlEngine">
-      <HintPath>..\..\FYI Report Project\Decompiled FYI View\bin\Release\RdlEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\RdlEngine.dll</HintPath>
     </Reference>
     <Reference Include="RdlViewer">
-      <HintPath>..\..\FYI Report Project\Decompiled FYI View\bin\Release\RdlViewer.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\RdlViewer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -147,7 +147,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.SQLite">
-      <HintPath>C:\Dev\Libs\Sqlite\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -173,27 +173,26 @@
     <Reference Include="WindowsFormsIntegration">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.0.2000.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\AvalonDock_2_0_2000\Xceed.Wpf.AvalonDock.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.resources">
-      <HintPath>..\..\Libs\AvalonDock_2_0_2000\es\Xceed.Wpf.AvalonDock.resources.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.AvalonDock.resources.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
-      <HintPath>..\..\Libs\AvalonDockThemes\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Expression">
-      <HintPath>..\..\Libs\AvalonDockThemes\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.AvalonDock.Themes.Expression.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
-      <HintPath>..\..\Libs\AvalonDockThemes\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
-      <HintPath>..\..\Libs\AvalonDockThemes\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\Libs\Extended WPF Toolkit Binaries\Xceed.Wpf.Toolkit.dll</HintPath>
+      <HintPath>..\..\..\..\..\dev\lib\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
