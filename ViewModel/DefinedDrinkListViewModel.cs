@@ -100,8 +100,6 @@ namespace BloodAlcoholCalculator.ViewModel
 
           private void ConsumeDrink()
           {
-               
-
                //add drink for each user
                foreach(var user in UserRepository.Dict.Values) {
                     ConsumedDrinkViewModel consumedDrink = new ConsumedDrinkViewModel()
