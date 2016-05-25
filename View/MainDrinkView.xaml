@@ -25,7 +25,7 @@
                <RowDefinition Height="25"/>
           </Grid.RowDefinitions>
           <DockPanel Grid.Row="0">
-               <ComboBox DockPanel.Dock="Left" Width="100" SelectedValue="{Binding User}" HorizontalAlignment="Left"  Grid.Row="0" ItemsSource="{Binding UserRepository.Collection}">
+               <ComboBox FontSize="15" DockPanel.Dock="Left" Width="100" SelectedValue="{Binding User}" HorizontalAlignment="Left"  Grid.Row="0" ItemsSource="{Binding UserRepository.Collection}">
                     <ComboBox.ItemTemplate>
                          <DataTemplate>
                               <TextBlock Text="{Binding Name}" />
@@ -35,7 +35,7 @@
                <Button DockPanel.Dock="Right" Command="{Binding SelectNowCommand}" >Now</Button>
                <xctk:DateTimePicker DockPanel.Dock="Right" HorizontalAlignment="Right" Value="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     Format="Custom"
-                                    Width="200"
+                                    Width="Auto"
                                     FormatString="yyyy-MMM-dd HH:mm"/>
                
           </DockPanel>
@@ -52,9 +52,9 @@
                <sparrow:LineSeries PointsSource="{Binding PlotPoints}"  XPath="X" YPath="Y"/>
           </sparrow:SparrowChart>
           <DockPanel Grid.Row="3">
-               <Button Width="100" DockPanel.Dock="Right" Command="{Binding RefreshChartCommand}" >Refresh Chart</Button>
-               <WrapPanel Width="200" DockPanel.Dock="Left">
-                    <TextBlock Text="{Binding BloodAlcoholString}"/>
+               <Button Width="100" FontSize="15" HorizontalAlignment="Left" DockPanel.Dock="Right" Command="{Binding RefreshChartCommand}" >Refresh Chart</Button>
+               <WrapPanel Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left">
+                    <TextBlock HorizontalAlignment="Left" FontSize="15" Text="{Binding BloodAlcoholString}"/>
                </WrapPanel>
           </DockPanel>
      </Grid>
