@@ -143,6 +143,9 @@ namespace BloodAlcoholCalculator.ViewModel
                     case "EditUsers":
                          ShowView(new EditUsersViewModel());
                          break;
+                    case "MainDrink":
+                         ShowView(new MainDrinkViewModel());
+                         break;
                     default:
                          throw new ArgumentException("Invalid ViewModel Type");
                }
