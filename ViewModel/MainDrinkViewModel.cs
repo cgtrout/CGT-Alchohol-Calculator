@@ -33,6 +33,7 @@ namespace BloodAlcoholCalculator.ViewModel
           private void Timer_Tick(object sender, EventArgs e)
           {
                OnPropertyChanged("BloodAlcohol");
+               OnPropertyChanged("BloodAlcoholString");
           }
 
           public UserViewModel User
@@ -68,12 +69,11 @@ namespace BloodAlcoholCalculator.ViewModel
                     if (User == null) return 0;
 
                     var deltaTime = DateTime.Now - User.StartTime;
-                    OnPropertyChanged("BloodAlcoholString");
                     return CalculationUnit.CalculationUnit.CalculateBac(ConsumedDrinkListVM.GetFilteredList(), User.BaseUser, deltaTime);
                }
           }
 
-          public string BloodAlcoholString => BloodAlcohol.ToString("0.##");
+          public string BloodAlcoholString => $"BAC={BloodAlcohol.ToString("0.000")}";
 
           //SelectNowCommand
           public ICommand SelectNowCommand

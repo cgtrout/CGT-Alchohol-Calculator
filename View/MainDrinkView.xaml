@@ -38,8 +38,7 @@
 
           <DockPanel Grid.Row="2">
                <WrapPanel DockPanel.Dock="Right">
-                    <Label>BloodAlcohol:</Label>
-                    <TextBlock Text="{Binding BloodAlcohol}"/>
+                    <TextBlock Text="{Binding BloodAlcoholString}"/>
                </WrapPanel>
           </DockPanel>
      </Grid>
