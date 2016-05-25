@@ -101,8 +101,6 @@ namespace BloodAlcoholCalculator.ViewModel
                var sourceItem = dropInfo.Data as DefinedDrinkViewModel;
                var targetItem = dropInfo.TargetItem as MainDrinkViewModel;
 
-               System.Console.WriteLine($"source={sourceItem?.GetType()} {dropInfo?.TargetItem?.GetType()}");
-
                if(sourceItem != null)
                {
                     dropInfo.Effects = DragDropEffects.Copy;
