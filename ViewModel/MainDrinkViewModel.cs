@@ -1,18 +1,21 @@
 ﻿using BloodAlcoholCalculator.Repository;
+using GongSolutions.Wpf.DragDrop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace BloodAlcoholCalculator.ViewModel
 {
-     public class MainDrinkViewModel : WorkspaceViewModel
+     public class MainDrinkViewModel : WorkspaceViewModel, IDropTarget
      {
           public ConsumedDrinkListViewModel ConsumedDrinkListVM { get; set; }
           public DataRepository<UserViewModel, Model.User> UserRepository { get; set; }
+          public DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink> ConsumedDrinkRepository { get; set; }
           private UserViewModel _user = null;
           private DateTime _startTime;
           private DispatcherTimer timer;
@@ -22,6 +25,7 @@ namespace BloodAlcoholCalculator.ViewModel
           {
                base.DisplayName = "Main Drink Window";
                ConsumedDrinkListVM = new ConsumedDrinkListViewModel();
+               ConsumedDrinkRepository = DataRepository<ConsumedDrinkViewModel, Model.ConsumedDrink>.Instance;
                UserRepository = DataRepository<UserViewModel, Model.User>.Instance;
 
                timer = new DispatcherTimer();
@@ -92,6 +96,32 @@ namespace BloodAlcoholCalculator.ViewModel
                StartTime = DateTime.Now;
           }
 
+          public void DragOver(IDropInfo dropInfo)
+          {
+               var sourceItem = dropInfo.Data as DefinedDrinkViewModel;
+               var targetItem = dropInfo.TargetItem as MainDrinkViewModel;
 
+               System.Console.WriteLine($"source={sourceItem?.GetType()} {dropInfo?.TargetItem?.GetType()}");
+
+               if(sourceItem != null)
+               {
+                    dropInfo.Effects = DragDropEffects.Copy;
+               }
+          }
+
+          public void Drop(IDropInfo dropInfo)
+          {
+               var definedDrink = dropInfo.Data as DefinedDrinkViewModel;
+
+               if (User != null && definedDrink != null) { 
+                    var consumedDrink = new ConsumedDrinkViewModel() {
+                         LinkedDrink = definedDrink.Drink,
+                         Time = DateTime.Now
+                    };
+                    consumedDrink.Drink.LinkedUserId = User.Id;
+                    consumedDrink.Drink.LinkedDrinkId = definedDrink.Id;
+                    ConsumedDrinkRepository.Add(consumedDrink);
+               }
+          }
      }
 }

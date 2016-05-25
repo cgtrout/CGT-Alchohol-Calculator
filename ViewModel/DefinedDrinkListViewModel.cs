@@ -101,16 +101,22 @@ namespace BloodAlcoholCalculator.ViewModel
           private void ConsumeDrink()
           {
                //add drink for each user
-               foreach(var user in UserRepository.Dict.Values) {
+               foreach(var user in UserRepository.Dict.Values)
+               {
                     ConsumedDrinkViewModel consumedDrink = new ConsumedDrinkViewModel()
                     {
                          Time = DateTime.Now,
                          LinkedDrink = SelectedValue.Drink
                     };
-                    consumedDrink.Drink.LinkedUserId = user.Id;
-                    consumedDrink.Drink.LinkedDrinkId = SelectedValue.Id;
-                    ConsumedDrinkRepository.Add(consumedDrink);
+                    AddUserDrink(user, consumedDrink);
                }
+          }
+
+          public void AddUserDrink(UserViewModel user, ConsumedDrinkViewModel consumedDrink)
+          {
+               consumedDrink.Drink.LinkedUserId = user.Id;
+               consumedDrink.Drink.LinkedDrinkId = SelectedValue.Id;
+               ConsumedDrinkRepository.Add(consumedDrink);
           }
 
           public DefinedDrinkViewModel SelectedValue

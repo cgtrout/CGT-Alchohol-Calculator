@@ -8,7 +8,12 @@
              xmlns:vm="clr-namespace:BloodAlcoholCalculator.ViewModel"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="600">
+             d:DesignHeight="300" d:DesignWidth="600"
+             
+             xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+             dd:DragDrop.IsDropTarget="True"
+             AllowDrop="True"
+             dd:DragDrop.DropHandler="{Binding}">
      <!--<UserControl.Resources>
           <vm:ConsumedDrinkListViewModel x:Key="vm"/>
      </UserControl.Resources>-->

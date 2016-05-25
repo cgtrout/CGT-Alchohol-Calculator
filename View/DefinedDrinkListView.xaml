@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:BloodAlcoholCalculator.View"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
           <Grid.RowDefinitions>
@@ -18,7 +19,8 @@
                      AutoGenerateColumns="False"
                      SelectionMode="Single"
                      CanUserAddRows="False"
-                     Name="dataGrid">
+                     Name="dataGrid"
+                     dd:DragDrop.IsDragSource="True">
                <DataGrid.InputBindings>
                     <KeyBinding Key="Delete" Command="{Binding DeleteDrinkCommand}"/>
                </DataGrid.InputBindings>

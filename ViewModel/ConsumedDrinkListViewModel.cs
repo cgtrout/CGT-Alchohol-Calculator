@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using BloodAlcoholCalculator.Model;
+using System;
 
 namespace BloodAlcoholCalculator.ViewModel
 {
@@ -113,7 +114,7 @@ namespace BloodAlcoholCalculator.ViewModel
           {
                Repository.Remove(SelectedValue);
           }
-
+                    
           public ConsumedDrinkViewModel SelectedValue
           {
                get { return _selectedValue; }
