@@ -66,7 +66,6 @@ namespace BloodAlcoholCalculator.ViewModel
                     OnPropertyChanged("PlotPoints");
                     chartRefreshCountDown = chartRefreshCountDownStart;
                }
-
           }
 
           private void RefreshBac()
