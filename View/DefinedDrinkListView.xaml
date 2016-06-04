@@ -34,7 +34,7 @@
                </i:Interaction.Triggers>
                <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" FontSize="20" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <DataGridTextColumn Header="%" FontSize="20" Binding="{Binding Percentage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <DataGridTextColumn Header="%" FontSize="20" Binding="{Binding Percentage, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
                     <DataGridTextColumn Header="Volume" FontSize="20" Binding="{Binding Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <DataGridTemplateColumn>
                          <DataGridTemplateColumn.CellTemplate>
