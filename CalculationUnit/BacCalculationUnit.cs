@@ -16,6 +16,7 @@ namespace BloodAlcoholCalculator.CalculationUnit
                     drinks += CalculateDrinkSize(d.LinkedDrink.Volume, d.LinkedDrink.Percentage);
                }
                var bodyWaterConstant = (user.Male == true) ? Constants.BodyWaterConstantMale : Constants.BodyWaterConstantFemale;
+            
                double bac = ((Constants.WaterInBlood * drinks * 1.2) / (user.BodyWeight * bodyWaterConstant)) - (user.MetabolismFactor * deltaTime.TotalHours);
                return bac;
           }

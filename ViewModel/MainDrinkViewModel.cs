@@ -109,7 +109,15 @@ namespace BloodAlcoholCalculator.ViewModel
                get {
                     if (User == null) return 0;
 
-                    var deltaTime = DateTime.Now - User.StartTime;
+                    var drinkList = ConsumedDrinkListVM.GetFilteredList();
+
+                    DateTime startTime = StartTime;
+                    if(drinkList.Count > 0)
+                    {
+                         startTime = drinkList[0].Time;
+                    }
+
+                    var deltaTime = DateTime.Now - startTime;
                     return CalculationUnit.BacCalculationUnit.CalculateBac(ConsumedDrinkListVM.GetFilteredList(), User.BaseUser, deltaTime);
                }
           }
