@@ -53,9 +53,11 @@
           </sparrow:SparrowChart>
           <DockPanel Grid.Row="3">
                <Button Width="100" FontSize="15" HorizontalAlignment="Left" DockPanel.Dock="Right" Command="{Binding RefreshChartCommand}" >Refresh Chart</Button>
-               <WrapPanel Width="200" HorizontalAlignment="Left" DockPanel.Dock="Left">
-                    <TextBlock HorizontalAlignment="Left" FontSize="15" Text="{Binding BloodAlcoholString}"/>
-               </WrapPanel>
+               <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" DockPanel.Dock="Left">
+                    <TextBlock FontSize="15" Text="{Binding BloodAlcoholString}"/>
+                    <TextBlock Text="   "></TextBlock>
+                    <TextBlock FontSize="15" Text="{Binding TimeLeftString}"/>
+            </WrapPanel>
           </DockPanel>
      </Grid>
 </UserControl>

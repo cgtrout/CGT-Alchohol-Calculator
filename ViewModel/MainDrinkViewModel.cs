@@ -11,6 +11,7 @@ using System.Windows.Threading;
 using BloodAlcoholCalculator.CalculationUnit;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Reflection.Emit;
 
 namespace BloodAlcoholCalculator.ViewModel
 {
@@ -72,6 +73,7 @@ namespace BloodAlcoholCalculator.ViewModel
           {
                OnPropertyChanged("BloodAlcohol");
                OnPropertyChanged("BloodAlcoholString");
+               OnPropertyChanged("TimeLeftString");
           }
 
           public UserViewModel User
@@ -122,7 +124,25 @@ namespace BloodAlcoholCalculator.ViewModel
                }
           }
 
+          public TimeSpan TimeLeft {
+               get {
+                    if (User == null) return new TimeSpan(0);
+
+                    var drinkList = ConsumedDrinkListVM.GetFilteredList();
+
+                    DateTime startTime = StartTime;
+                    if (drinkList.Count > 0)
+                    {
+                         startTime = drinkList[0].Time;
+                    }
+
+                    var deltaTime = DateTime.Now - startTime;
+                    return CalculationUnit.BacCalculationUnit.CalculateTimeToDesiredBac(ConsumedDrinkListVM.GetFilteredList(), User.BaseUser, deltaTime);
+               }
+          }
+
           public string BloodAlcoholString => $"BAC={BloodAlcohol.ToString("0.000")}";
+          public string TimeLeftString => $"TimeLeft={TimeLeft.ToString()} | Next drink @ {DateTime.Now + TimeLeft}";
 
           //SelectNowCommand
           public ICommand SelectNowCommand
@@ -194,7 +214,7 @@ namespace BloodAlcoholCalculator.ViewModel
                          thisDrinkList.Add(d);
                     }
 
-                    var deltaTime = currTime - StartTime;
+                    var deltaTime = currTime - start;
 
                     //calc bac
                     var bac = BacCalculationUnit.CalculateBac(thisDrinkList, User.BaseUser, deltaTime);
